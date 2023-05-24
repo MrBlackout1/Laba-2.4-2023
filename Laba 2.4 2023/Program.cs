@@ -1,19 +1,26 @@
 ﻿using System;
-
+using System.Collections.Generic;
 class Program
 {
-    static void Main(string[] args)
+    delegate int StringLengthDelegate(string input);
+    static void Main()
     {
-        // Створюємо список рядків
-        string[] strings = { "Volodymyr", "Georgiy", "Ivan", "Max" };
+        List<string> strings = new List<string>
+        {
+            "Hello",
+            "World",
+            "This",
+            "Is",
+            "A",
+            "Test"
+        };
 
-        // Створюємо делегат, який приймає рядок і повертає його довжину
-        Func<string, int> stringLength = s => s.Length;
+        StringLengthDelegate stringLength = s => s.Length;
 
-        // Виводимо довжини всіх рядків у списку
         foreach (string str in strings)
         {
-            Console.WriteLine("{0} - {1} characters", str, stringLength(str));
+            int length = stringLength(str);
+            Console.WriteLine($"Length of '{str}': {length}");
         }
     }
 }
